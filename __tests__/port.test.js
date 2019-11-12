@@ -38,12 +38,3 @@ describe('makes ports and has ships', () => {
 	
 	
 })
-
-
-
-
-
-/* const dover = new Port('Dover');
-const calais = new Port('Calais');
-const newItin = new Itinerary([calais, dover]);
-const newShip = new Ship('Titanic', newItin); */
