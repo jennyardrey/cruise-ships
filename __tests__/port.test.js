@@ -1,19 +1,17 @@
 /* globals describe it expect */
 const Port = require("../src/port.js")
-const Ship = require("../src/ship.js")
-const Itinerary = require("../src/itinerary.js")
-
 
 describe('makes ports and has ships', () => {
 	let calais;
 	let dover;
-	let itinerary;
+	// let itinerary;
 	let newShip;
 	beforeEach(()=> {
+		ship = {setSail: jest.fn(), dock: jest.fn(),};
 		calais = new Port('Calais');
 		dover = new Port('Dover');
-		itinerary = new Itinerary([calais, dover]);
-		newShip = new Ship('Titanic', itinerary);
+		// itinerary = {ports:[calais, dover]};
+		newShip = { ...ship, name: "Titanic", }
 	})
 	
 	it('returns an object', () => {

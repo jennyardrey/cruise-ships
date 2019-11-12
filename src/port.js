@@ -15,7 +15,6 @@ class Port {
 		const ships = this.ships;
 		console.log(exShipIndex);
 		ships.splice(exShipIndex, 1);
-		console.log(this.ships);
 	}
 };
 

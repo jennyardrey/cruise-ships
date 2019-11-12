@@ -1,7 +1,6 @@
 /* globals describe it expect */
 const Ship = require("../src/ship.js")
-const Port = require("../src/port.js")
-const Itinerary = require("../src/itinerary")
+
 
 describe('with ports and itinerarys', () => {
 	let calais;
@@ -13,7 +12,7 @@ describe('with ports and itinerarys', () => {
 		port = {removeShip: jest.fn(), addShip: jest.fn(),};
 		calais = { ...port, name : 'Calais', ships: []};
 		dover = { ...port, name : 'Dover', ships: []};
-		itinerary = new Itinerary([calais, dover]);
+		itinerary = {ports:[calais, dover]};
 		newShip = new Ship('Titanic', itinerary);
 	})
 	
