@@ -3,43 +3,47 @@ const Port = require("../src/port.js")
 const Ship = require("../src/ship.js")
 const Itinerary = require("../src/itinerary.js")
 
-describe('port', () => {
+
+describe('makes ports and has ships', () => {
+	let calais;
+	let dover;
+	let itinerary;
+	let newShip;
+	beforeEach(()=> {
+		calais = new Port('Calais');
+		dover = new Port('Dover');
+		itinerary = new Itinerary([calais, dover]);
+		newShip = new Ship('Titanic', itinerary);
+	})
+	
 	it('returns an object', () => {
 		expect(new Port('Calais')).toBeInstanceOf(Object);
 	})
-	const newPort = new Port('Calais');
+
 	it('has the name of the passed port',  () => {
-		expect(newPort.name).toBe('Calais');
+		expect(calais.name).toBe('Calais');
 	})
-})
-
-describe('addShip', () => {
-	const dover = new Port('Dover');
-	const calais = new Port('Calais');
-	const newItin = new Itinerary([calais, dover]);
-	const newShip = new Ship('Titanic', newItin);
-	calais.addShip(newShip);
+	
+	
 	it('adds a ship that is docked to its ships property',  () => {
-		expect(calais.ships).toEqual([newShip]);
+		calais.addShip(newShip);
+		expect(calais.ships).toContain(newShip);
 	})
+	
+	
+	it('removes a ship that is no longer docked', () => {
+		calais.removeShip(newShip);
+		expect(calais.ships).not.toContain(newShip);
+	})
+	
+	
 })
 
-describe('removeShip', () => {
-	const dover = new Port('Dover');
-	const calais = new Port('Calais');
-	const newItin = new Itinerary([calais, dover]);
-	const newShip = new Ship('Titanic', newItin);
-	calais.addShip(newShip);
-	calais.removeShip(newShip);
-	it('removes a ship that is no longer docked', () => {
-		expect(calais.ships).toEqual([]);
-	})
-})
 
 
 
 
 /* const dover = new Port('Dover');
-	const calais = new Port('Calais');
-	const newItin = new Itinerary([calais, dover]);
-	const newShip = new Ship('Titanic', newItin); */
+const calais = new Port('Calais');
+const newItin = new Itinerary([calais, dover]);
+const newShip = new Ship('Titanic', newItin); */
